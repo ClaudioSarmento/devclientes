@@ -3,7 +3,7 @@ import {Home} from './pages/home'
 import {Detail} from './pages/detail'
 import {About} from './pages/about'
 import {Create} from './pages/create'
-import {Layout} from './components/layouts'
+import {Layout} from './components/layout'
 
 export function Routes(){
     return(

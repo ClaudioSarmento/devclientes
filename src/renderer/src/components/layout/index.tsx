@@ -1,12 +1,16 @@
+import * as Collapsible from '@radix-ui/react-collapsible'
 import { Outlet } from 'react-router-dom'
 import { Header } from '../header'
-export function Layout(){
-    return(
-        <>
-        <div className='flex-1 flex flex-col max-h-screen'>
-            <Header/>
-            <Outlet/>
-        </div>
-        </>
+import { Sidebar } from '../sidebar'
+export function Layout() {
+    return (
+        <Collapsible.Root>
+            <Sidebar/>
+            <div className='flex-1 flex flex-col max-h-screen'>
+                <Header />
+                
+                <Outlet />
+            </div>
+        </Collapsible.Root>
     )
 }

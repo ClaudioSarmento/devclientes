@@ -35,6 +35,7 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+    //mainWindow.webContents.openDevTools();
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {

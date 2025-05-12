@@ -24,7 +24,8 @@ const api = {
   fethAllCustomers: (): Promise<Customer[]> => {
     return ipcRenderer.invoke("fetch-all-customers")
   },
-  fetchCustomerById: (docId: string): Promise<Customer> => ipcRenderer.invoke("fetch-customer-id", docId)
+  fetchCustomerById: (docId: string): Promise<Customer> => ipcRenderer.invoke("fetch-customer-id", docId),
+  deleteCustomer: (docId: string): Promise<Customer> => ipcRenderer.invoke("delete-customer", docId)
 
 }
 

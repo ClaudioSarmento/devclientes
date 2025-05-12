@@ -1,7 +1,8 @@
 
 export function Home(){
     async function handleAdd(){
-        const response = await window.api.fetchUsers();
+        const response = await window.api.fethAllCustomers();
+        console.log(response);
     }
 
     return (

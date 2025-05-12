@@ -32,6 +32,7 @@
     "phosphor-react": "^1.4.1",
     "pouchdb": "^9.0.0",
     "pouchdb-browser": "^9.0.0",
+    "pouchdb-node": "^9.0.0",
     "react-router-dom": "^7.6.0",
     "vite-plugin-static-copy": "^2.3.1"
   },

@@ -29,7 +29,10 @@ module.exports = {
     plugin(({addUtilities}) => {
         addUtilities({
           '.region-drag': {
-            '-webkit-app-region': 'drag',
+            '-webkit-app-region': 'drag'
+          },
+          '.region-no-drag': {
+            '-webkit-app-region': 'no-drag'
           }
         })
     })

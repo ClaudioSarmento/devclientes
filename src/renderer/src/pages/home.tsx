@@ -43,6 +43,7 @@ export function Home() {
                                 <span className="font-semibold">Telefone: </span> {customer.phone}
                             </p>
                         )}
+                        <p><span className="font-semibold">Cargo: </span>{customer.role}</p>
                     </Link>
                 ))}
             </section>

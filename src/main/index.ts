@@ -2,7 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join, resolve } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { createFileRoute, createURLRoute } from 'electron-router-dom'
-import {createTray} from './tray'
+import { createTray } from './tray'
 import './ipc'
 import './store'
 
@@ -11,7 +11,10 @@ function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
-    show: true,
+    minWidth: 700,
+    minHeight: 670,
+    show: false,
+     alwaysOnTop: true,
     autoHideMenuBar: true,
     backgroundColor: "#030712",
     ...(process.platform === 'linux' ? {
@@ -28,14 +31,18 @@ function createWindow(): void {
   // Chamar para exibir o tray
   createTray(mainWindow)
 
-  if(process.platform === "darwin"){
-    const iconPath = resolve(__dirname, "resources","icon.png")
+  if (process.platform === "darwin") {
+    const iconPath = resolve(__dirname, "resources", "icon.png")
     app.dock?.setIcon(iconPath);
   }
 
   mainWindow.on('ready-to-show', () => {
+    mainWindow.maximize()
     mainWindow.show()
     //mainWindow.webContents.openDevTools();
+    setTimeout(() => {
+      mainWindow.setAlwaysOnTop(false)
+    }, 1000)
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {

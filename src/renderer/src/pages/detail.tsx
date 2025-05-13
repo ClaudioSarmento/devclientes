@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom'
-import { useQuery, useQueryClient } from "@tanstack/react-query"
-import { Link } from 'react-router-dom'
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query"
+import { Link , useNavigate} from 'react-router-dom'
 import { ArrowLeft, Trash } from 'phosphor-react';
+
 
 export function Detail() {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
     const { data, isFetching } = useQuery({
         queryKey: ["customer"], queryFn: async () => {
@@ -12,6 +14,18 @@ export function Detail() {
             return response;
         }
     })
+
+    const {isPending, mutateAsync: handleDeleteCustomer} = useMutation({mutationFn: async (id: string) => {
+        try{
+            await window.api.deleteCustomer(id)
+
+        }catch(err){
+
+        }
+    }, onSuccess: () => {
+        queryClient.invalidateQueries({queryKey: ["customers"]})
+        navigate("/")
+    }})
 
     return (
         <main className="flex-1 flex flex-col py-12 px-10 text-white">
@@ -41,7 +55,11 @@ export function Detail() {
                                 </p>
                             )}
                             <div className='absolute -top-3 right-2'>
-                                <button className='bg-red-500 hover:bg-red-600 p-2 rounded-full z-20'>
+                                <button 
+                                    className='bg-red-500 hover:bg-red-600 p-2 rounded-full z-20'
+                                    onClick={() => handleDeleteCustomer(data._id)}
+                                    disabled={isPending}
+                                >
                                     <Trash className='text-white h-6 w-6' />
                                 </button>
                             </div>

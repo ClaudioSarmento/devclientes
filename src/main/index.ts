@@ -5,6 +5,7 @@ import { createFileRoute, createURLRoute } from 'electron-router-dom'
 import { createTray } from './tray'
 import './ipc'
 import './store'
+import { createShortcuts } from './shortcuts'
 
 function createWindow(): void {
   // Create the browser window.
@@ -30,6 +31,7 @@ function createWindow(): void {
 
   // Chamar para exibir o tray
   createTray(mainWindow)
+  createShortcuts(mainWindow)
 
   if (process.platform === "darwin") {
     const iconPath = resolve(__dirname, "resources", "icon.png")
